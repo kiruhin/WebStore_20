@@ -35,6 +35,8 @@ namespace WebStore_20
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+
             var helloString = _configuration["CustomHelloWorld"];
             //var helloString = _configuration["Logging:LogLevel:Default"];
 
