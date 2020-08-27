@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebStore_20.ViewModels;
+using WebStore.ViewModels;
 
-namespace WebStore_20.Controllers
+namespace WebStore.Controllers
 {
     public class EmployeeController : Controller
     {

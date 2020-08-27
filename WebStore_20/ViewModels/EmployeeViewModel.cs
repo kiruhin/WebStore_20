@@ -1,4 +1,4 @@
-﻿namespace WebStore_20.ViewModels
+﻿namespace WebStore.ViewModels
 {
     public class EmployeeViewModel
     {
