@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebStore.Infrastructure;
 
 namespace WebStore
 {
@@ -35,6 +37,14 @@ namespace WebStore
             var helloString = _configuration["CustomHelloWorld"];
             //var helloString = _configuration["Logging:LogLevel:Default"];
 
+            app.UseWelcomePage("/welcome");
+
+            app.UseMiddleware<TokenMiddleware>();
+
+            UseMiddlewareSample(app);
+
+            app.Map("/index", CustomIndexHandler);
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -59,6 +69,38 @@ namespace WebStore
                 //    await context.Response.WriteAsync(helloString);
                 //});
             });
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("No handler found for this request...");
+            });
         }
+
+        private void CustomIndexHandler(IApplicationBuilder app)
+        {
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("response to /Index URL...");
+            });
+        }
+
+        private void UseMiddlewareSample(IApplicationBuilder app)
+        {
+            app.Use(async (context, next) =>
+            {
+                bool isError = false;
+                // ...
+                if (isError)
+                {
+                    await context.Response
+                        .WriteAsync("Error occured. You're in custom pipeline module...");
+                }
+                else
+                {
+                    await next.Invoke();
+                }
+            });
+        }
+
     }
 }

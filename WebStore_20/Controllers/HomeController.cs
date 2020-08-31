@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebStore.Controllers
 {
@@ -16,6 +17,8 @@ namespace WebStore.Controllers
             //return new FileContentResult();
             //return new EmptyResult();
             //return Content("Hello from controller");
+
+            //throw new Exception("OOps. Smth went wrong..");
             return View();
         }
 
