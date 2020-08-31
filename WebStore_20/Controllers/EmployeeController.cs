@@ -5,6 +5,8 @@ using WebStore.ViewModels;
 
 namespace WebStore.Controllers
 {
+    //[Route("users/[action]")]
+    [Route("users")]
     public class EmployeeController : Controller
     {
         private readonly List<EmployeeViewModel> _employees = new List<EmployeeViewModel>
@@ -29,18 +31,13 @@ namespace WebStore.Controllers
             }
         };
 
-        // /home/index
-        public IActionResult Index()
-        {
-            //return Content("Hello from controller");
-            return View();
-        }
-
+        [Route("all")]
         public IActionResult Employees()
         {
             return View(_employees);
         }
 
+        [Route("{id}")]
         public IActionResult EmployeeDetails(int id)
         {
             //Получаем сотрудника по Id
