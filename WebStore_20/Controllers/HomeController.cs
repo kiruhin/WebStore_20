@@ -7,6 +7,15 @@ namespace WebStore.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            //return StatusCode(500);
+            //return new RedirectResult("https://google.com");
+            //return RedirectToAction("Blog", "Home");
+            //return PartialView("_Partial/_LeftSideBar");
+            //return new JsonResult("");
+            //return new NotFoundResult();
+            //return new FileContentResult();
+            //return new EmptyResult();
+            //return Content("Hello from controller");
             return View();
         }
 
