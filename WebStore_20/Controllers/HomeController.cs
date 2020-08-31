@@ -1,11 +1,14 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using WebStore.Infrastructure;
 
 namespace WebStore.Controllers
 {
+    [SimpleActionFilter]
     public class HomeController : Controller
     {
         // GET: /<controller>/
+        //[SimpleActionFilter]
         public IActionResult Index()
         {
             //return StatusCode(500);
