@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WebStore.Infrastructure.Services;
 using WebStore.Interfaces.Infrastructure;
 using WebStore.ViewModels;
 
@@ -80,6 +81,20 @@ namespace WebStore.Controllers
             _employeesService.Commit(); // станет актуальным позднее (когда добавим БД)
 
             return RedirectToAction(nameof(Employees));
+        }
+
+        [HttpPost]
+        [Route("delete/{id?}")]
+        public IActionResult Delete(int id)
+        {
+            if (id > 0) 
+            {
+                _employeesService.Delete(id);
+                
+            }
+            
+            return RedirectToAction(nameof(Employees));
+            
         }
     }
 }

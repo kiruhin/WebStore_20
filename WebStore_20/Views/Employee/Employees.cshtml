@@ -6,13 +6,26 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td><a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a></td>
+           
             <td>@item.FirstName</td>
             <td>@item.SurName</td>
             <td>@item.Patronymic</td>
             <td>
-                @Html.ActionLink("Детали", "EmployeeDetails", new {id = item.Id})
+                @Html.ActionLink("Details", "EmployeeDetails", new {id = item.Id})
+                
+                @*<a asp-page="EmployeeDetails" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Details</a>*@
+                @*<a asp-action="EmployeeDetails, new {id=item.Id}" class="btn btn-success">Details</a>*@
+                @*@Html.ActionLink("Delete", "Delete", new {id = item.Id})*@
             </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>*@
+                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+            </td>
+            <td>
+                @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>*@
+                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-bullseye"></i></a>
+            </td>
+
         </tr>
     }
 </table>
