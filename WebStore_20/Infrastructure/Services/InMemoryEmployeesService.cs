@@ -45,7 +45,10 @@ namespace WebStore.Infrastructure.Services
         {
             // ничего не делаем
         }
-
+        /// <summary>
+        /// add new Employee
+        /// </summary>
+        /// <param name="model"></param>
         public void AddNew(EmployeeViewModel model)
         {
             model.Id = _employees.Max(e => e.Id) + 1;
