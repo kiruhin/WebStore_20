@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebStore.Infrastructure;
+using WebStore.Infrastructure.Interfaces;
 using WebStore.Infrastructure.Services;
 using WebStore.Interfaces.Infrastructure;
 
@@ -35,6 +36,10 @@ namespace WebStore
             services.AddSingleton<IEmployeesService, InMemoryEmployeesService>();
             // services.AddScoped<IEmployeesService, InMemoryEmployeesService>();
             //services.AddTransient<IEmployeesService, InMemoryEmployeesService>();
+
+            //Разрешение зависимости для сервиса InMemoryBookService
+            services.AddSingleton<IBookService, InMemoryBookService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
