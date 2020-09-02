@@ -25,7 +25,7 @@ namespace WebStore.Controllers
             return View(_bookService.GetAll());
         }
 
-        public IActionResult BookActionResultDetails(int id)
+        public IActionResult BookDetails(int id)
         {
             //Получаем  по Id
             var book = _bookService.GetById(id);
