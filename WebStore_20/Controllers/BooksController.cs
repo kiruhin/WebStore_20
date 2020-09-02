@@ -76,7 +76,7 @@ namespace WebStore.Controllers
             {
                 _bookService.AddNew(model);
             }
-            _bookService.Commit(); // станет актуальным позднее (когда добавим БД)
+            _bookService.Commit(); 
 
             return RedirectToAction(nameof(Books));
         }
@@ -85,14 +85,15 @@ namespace WebStore.Controllers
         //[Route("delete/{id?}")]
         public IActionResult Delete(int id)
         {
+
             if (id > 0)
             {
+
                 _bookService.Delete(id);
 
             }
 
             return RedirectToAction(nameof(Books));
-            //return View(Employees());
 
         }
     }
