@@ -84,15 +84,15 @@ namespace WebStore.Controllers
             return RedirectToAction(nameof(Employees));
         }
 
-        [HttpPost]
-        [Route("delete/{id?}")]
+       
+        [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            if (id > 0) 
-            {
+            //if (id > 0) 
+            //{
                 _employeesService.Delete(id);
                 
-            }
+            //}
 
             return RedirectToAction(nameof(Employees));
             //return View(Employees());

@@ -20,8 +20,8 @@
                 @*<a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>*@
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                @*<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>*@
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                 @*<a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-bullseye"></i></a>*@
             </td>
 
