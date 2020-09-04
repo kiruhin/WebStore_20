@@ -81,17 +81,17 @@ namespace WebStore.Controllers
             return RedirectToAction(nameof(Books));
         }
 
-        [HttpPost]
-        //[Route("delete/{id?}")]
+        //[HttpPost]
+        [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {
 
-            if (id > 0)
-            {
+            //if (id > 0)
+            //{
 
                 _bookService.Delete(id);
 
-            }
+            //}
 
             return RedirectToAction(nameof(Books));
 
