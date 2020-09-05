@@ -40,6 +40,9 @@ namespace WebStore
             //Разрешение зависимости для сервиса InMemoryBookService
             services.AddSingleton<IBookService, InMemoryBookService>();
 
+            //Разрешение зависимости для сервиса InMemoryProductService
+            services.AddSingleton<IProductService, InMemoryProductService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
