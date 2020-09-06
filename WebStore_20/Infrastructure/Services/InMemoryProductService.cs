@@ -7,14 +7,15 @@ using WebStore.Infrastructure.Interfaces;
 
 namespace WebStore.Infrastructure.Services
 {
+    /// <summary>
+    /// Service for store Products on RAM
+    /// </summary>
     public class InMemoryProductService :IProductService
     {
       private  readonly  List<Category> _categories;
       private readonly List<Brand> _brands;
 
-        /// <summary>
-        /// Service for store Products on RAM
-        /// </summary>
+        
       public InMemoryProductService()
       {
             _categories = new List<Category>()

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WebStore.Domain.Entities.Base;
+﻿using WebStore.Domain.Entities.Base;
 using WebStore.Domain.Entities.Base.Interface;
 
 namespace WebStore.Domain.Entities
 {
-   public class Category: NamedEntity, IOrderedEntity
+    public class Category: NamedEntity, IOrderedEntity
     {
         /// <summary>
         /// Parents Id

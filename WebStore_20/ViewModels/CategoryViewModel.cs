@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using WebStore.Domain.Entities.Base.Interface;
 
 namespace WebStore.ViewModels
 {
+    /// <summary>
+    /// View-Model for Categories Products
+    /// </summary>
     public class CategoryViewModel : INamedEntity, IOrderedEntity
     {
         public CategoryViewModel()

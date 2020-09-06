@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WebStore.Domain.Entities.Base.Interface
+﻿namespace WebStore.Domain.Entities.Base.Interface
 {
     public interface IOrderedEntity
     {
-        public int Order { get; set; }
+         int Order { get; set; }
     }
 }
