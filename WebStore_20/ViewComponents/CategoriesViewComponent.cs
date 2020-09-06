@@ -7,6 +7,7 @@ using WebStore.ViewModels;
 
 namespace WebStore.ViewComponents
 {
+    [ViewComponent(Name = "Cats")]
     public class CategoriesViewComponent : ViewComponent
     {
         private readonly IProductService _productService;
