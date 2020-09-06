@@ -67,7 +67,7 @@ namespace WebStore
                 // endpoints.MapDefaultControllerRoute(); // краткий аналог
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Catalog}/{action=Shop}/{id?}");
 // https://localhost:44317/    home            /index
 // https://localhost:44317/
                 // Маршрут по умолчанию состоит из трёх частей разделённых “/”

@@ -10,5 +10,7 @@ namespace WebStore.Infrastructure.Interfaces
     {
         IEnumerable<Category> GetCategories();
         IEnumerable<Brand> GetBrands();
+        IEnumerable<Product> GetProducts(ProductFilter filter);
+        int GetCountProductsForBrand(int brandId);
     }
 }

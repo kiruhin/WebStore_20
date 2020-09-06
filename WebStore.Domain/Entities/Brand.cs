@@ -10,6 +10,6 @@ namespace WebStore.Domain.Entities
     {
         public int Order { get; set; }
         public override string Name { get; set; }
-        public override int Id { get; set; }
+        public override int Id { get; set; }        
     }
 }

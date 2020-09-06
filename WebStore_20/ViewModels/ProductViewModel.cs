@@ -6,12 +6,12 @@ using WebStore.Domain.Entities.Base.Interfaces;
 
 namespace WebStore.ViewModels
 {
-    public class CategoryViewModel : INamedEntity, IOrderEntity
+    public class ProductViewModel : INamedEntity, IOrderEntity
     {
-        public string Name { get;set; }
+        public string Name { get; set; }
         public int Id { get; set; }
         public int Order { get; set; }
-        public List<CategoryViewModel> ChildCategories { get; set; } = new List<CategoryViewModel>();
-        public CategoryViewModel ParentCategory { get; set; }
+        public string ImageUrl { get; set; }
+        public decimal Price { get; set; }
     }
 }

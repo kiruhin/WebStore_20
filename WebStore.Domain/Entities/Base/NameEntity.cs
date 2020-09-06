@@ -5,7 +5,7 @@ using WebStore.Domain.Entities.Base.Interfaces;
 
 namespace WebStore.Domain.Entities.Base
 {
-    public abstract class NameEntity : INameEntity
+    public abstract class NameEntity : INamedEntity
     {
         public abstract string Name { get; set; }
         public abstract int Id { get; set; }

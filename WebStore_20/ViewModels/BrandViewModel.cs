@@ -6,10 +6,11 @@ using WebStore.Domain.Entities.Base.Interfaces;
 
 namespace WebStore.ViewModels
 {
-    public class BrandViewModel : INameEntity, IOrderEntity
+    public class BrandViewModel : INamedEntity, IOrderEntity, IAmountPieceEntity
     {
         public string Name { get; set; }
         public int Id { get; set; }
         public int Order { get; set; }
+        public int AmountPiece { get; set; }
     }
 }
