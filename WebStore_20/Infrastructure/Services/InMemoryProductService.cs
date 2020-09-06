@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebStore.Domain;
 using WebStore.Domain.Entities;
 using WebStore.Infrastructure.Interfaces;
@@ -17,9 +15,9 @@ namespace WebStore.Infrastructure.Services
       private readonly List<Brand> _brands;
       private readonly List<Product> _products;
 
-        
       public InMemoryProductService()
       {
+          
             _categories = new List<Category>()
             {
                 new Category()
@@ -403,7 +401,7 @@ namespace WebStore.Infrastructure.Services
                     BrandId = 3
                 },
             };
-        }
+      }
 
         public IEnumerable<Category> GetCategories()
         {
