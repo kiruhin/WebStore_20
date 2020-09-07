@@ -8,6 +8,7 @@ namespace WebStore.Infrastructure.Interfaces
     {
         IEnumerable<Category> GetCategories();
         IEnumerable<Brand> GetBrands();
+        int GetRatingBrand(int idBrand);
 
         IEnumerable<Product> GetProducts(ProductFilter filter);
     }

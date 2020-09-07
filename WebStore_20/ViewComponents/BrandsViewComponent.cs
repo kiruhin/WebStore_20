@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebStore.Domain;
 using WebStore.Domain.Entities;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.ViewModels;
@@ -28,17 +30,20 @@ namespace WebStore.ViewComponents
             IEnumerable<Brand> brands = _productService.GetBrands();
 
             var brandsListViewModels = new List<BrandViewModel>();
+
             foreach (var item in brands)
             {
-                brandsListViewModels.Add(new BrandViewModel()
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Order = item.Order
-                    
-                });
+                var _rating = _productService.GetRatingBrand(item.Id);
+
+                var _model = new BrandViewModel();
+                _model.Id = item.Id;
+                _model.Name = item.Name;
+                _model.Order = item.Order;
+                _model.Rating = _rating;
+
+                brandsListViewModels.Add(_model);
             }
-            //var brandsList = brands.ToList()
+
             return brandsListViewModels;
         }
     }

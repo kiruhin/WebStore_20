@@ -415,6 +415,25 @@ namespace WebStore.Infrastructure.Services
         {
             return _brands;
         }
+        /// <summary>
+        /// Rating of Existing Brand
+        /// </summary>
+        /// <param name="IdBrand"></param>
+        /// <returns></returns>
+        public int GetRatingBrand(int idBrand)
+        {
+            int _ratingBrand=0;
+
+            foreach (var item in _products)
+            {
+                if (item.BrandId==idBrand)
+                {
+                    _ratingBrand++;
+                }
+            }
+            return _ratingBrand;
+        }
+        
 
         public IEnumerable<Product> GetProducts(ProductFilter filter)
         {

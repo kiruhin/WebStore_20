@@ -8,9 +8,10 @@
         <ul class="nav nav-pills nav-stacked">
             @foreach (var item in Model)
             {
-                <li>
-                    <a href="#">@item.Name</a>
-                </li>
+            <li>
+                <a href="#">@item.Name</a>
+                <a href="#">@item.Rating</a>
+            </li>
             }
         </ul>
     }
