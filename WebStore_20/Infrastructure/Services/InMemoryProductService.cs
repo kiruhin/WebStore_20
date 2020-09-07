@@ -402,7 +402,10 @@ namespace WebStore.Infrastructure.Services
                 },
             };
       }
-
+        /// <summary>
+        /// Return Categories
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Category> GetCategories()
         {
             return _categories;
