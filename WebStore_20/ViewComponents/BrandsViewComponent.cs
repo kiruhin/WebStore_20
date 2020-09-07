@@ -18,9 +18,9 @@ namespace WebStore.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var brands = GetBrands();
+            var Brands = GetBrands();
 
-            return View();
+            return View(Brands);
         }
 
         private List<BrandViewModel> GetBrands()
