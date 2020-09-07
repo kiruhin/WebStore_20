@@ -7,7 +7,7 @@ using WebStore.Domain.Entities;
 
 namespace WebStore.DAL
 {
-    public static class  DbInitializer
+    public static class DbInitializer
     {
         public static void Initialize(WebStoreContext context)
         {
@@ -18,7 +18,7 @@ namespace WebStore.DAL
                 return;   // DB had already been seeded
             }
 
-            var categories =new List<Category>()
+            var categories = new List<Category>()
             {
                 new Category()
                 {
