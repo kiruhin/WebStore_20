@@ -12,6 +12,9 @@ namespace WebStore.Domain.Entities
     {
         public int Order { get; set; }
         public int CategoryId { get; set; }
+        /// <summary>
+        /// Id-Brand for Products
+        /// </summary>
         public int? BrandId { get; set; }
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
