@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore_4", "WebStore_20\WebStore_4.csproj", "{F4DF83ED-2024-4875-BD73-29DD79AF8A65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore_5", "WebStore_20\WebStore_5.csproj", "{F4DF83ED-2024-4875-BD73-29DD79AF8A65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStore.Domain", "WebStore.Domain\WebStore.Domain.csproj", "{376DC0AD-1BA0-4754-B269-2B30132D9053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebStore.Domain", "WebStore.Domain\WebStore.Domain.csproj", "{376DC0AD-1BA0-4754-B269-2B30132D9053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
