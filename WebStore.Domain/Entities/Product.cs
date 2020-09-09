@@ -16,6 +16,11 @@ namespace WebStore.Domain.Entities
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
         /// <summary>
+        /// Group of Products
+        /// </summary>
+        public string Group  { get; set; }
+
+        /// <summary>
         /// Id Category
         /// </summary>
         [ForeignKey("CategoryId")]
