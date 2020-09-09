@@ -46,7 +46,10 @@ namespace WebStore
             services.AddSingleton<IBookService, InMemoryBookService>();
 
             //Разрешение зависимости для сервиса InMemoryProductService
-            services.AddSingleton<IProductService, InMemoryProductService>();
+            //services.AddSingleton<IProductService, InMemoryProductService>();
+
+            //Разрешение зависимости для сервиса SqlProductService
+            services.AddScoped<IProductService, SqlProductService>();
 
         }
 
