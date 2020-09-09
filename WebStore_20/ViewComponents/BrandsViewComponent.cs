@@ -20,8 +20,8 @@ namespace WebStore.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var Brands = GetBrands();
-
+            var Brands= GetBrands();
+            //await Task.Run(Brands);
             return View(Brands);
         }
 
