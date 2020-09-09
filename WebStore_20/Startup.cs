@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebStore.DAL;
 using WebStore.Infrastructure;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.Infrastructure.Services;
@@ -31,6 +33,9 @@ namespace WebStore
                 // альтернативный вариант подключения
                 options.Filters.Add(new SimpleActionFilter()); // подключение по объекту
             });
+
+            services.AddDbContext<WebStoreContext>(options => options
+                .UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
 
             // Добавляем разрешение зависимости
             services.AddSingleton<IEmployeesService, InMemoryEmployeesService>();
@@ -71,11 +76,9 @@ namespace WebStore
             app.UseEndpoints(endpoints =>
             {
                 // endpoints.MapDefaultControllerRoute(); // краткий аналог
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-// https://localhost:44317/    home            /index
-// https://localhost:44317/
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+                        // https://localhost:44317/    home            /index
+                        // https://localhost:44317/
                 // Маршрут по умолчанию состоит из трёх частей разделённых “/”
                 // Первой частью указывается имя контроллера,
                 // второй - имя действия (метода) в контроллере,
@@ -83,7 +86,6 @@ namespace WebStore
                 // Если часть не указана - используются значения по умолчанию:
                 // для контроллера имя “Home”,
                 // для действия - “Index”
-
 
                 //endpoints.MapGet("/", async context =>
                 //{
