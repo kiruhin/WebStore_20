@@ -9,6 +9,9 @@ using WebStore.Infrastructure.Interfaces;
 
 namespace WebStore.Infrastructure.Services
 {
+    /// <summary>
+    /// Service for connecting with SQL-Database
+    /// </summary>
     public class SqlProductService : IProductService
     {
         private readonly WebStoreContext _context;
