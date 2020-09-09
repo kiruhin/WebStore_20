@@ -12,9 +12,10 @@ namespace WebStore.Infrastructure.Services
     public class SqlProductService : IProductService
     {
         private readonly WebStoreContext _context;
+
         public SqlProductService(WebStoreContext context)
         {
-            
+            _context = context;
         }
         public IEnumerable<Category> GetCategories()
         {
