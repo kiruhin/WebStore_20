@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
 using WebStore.Domain.Entities;
-using WebStore.Infrastructure.Interfaces;
 
-namespace WebStore.Infrastructure.Services
+namespace WebStore.Dal
 {
-    public class InMemoryProductService : IProductService
+    public static class DbInitializer
     {
-        private readonly List<Category> _categories;
-        private readonly List<Brand> _brands;
-        private readonly List<Product> _products;
-
-        public InMemoryProductService()
+        public static void Initialize(WebStoreContext context)
         {
-            _categories = new List<Category>()
+            context.Database.EnsureCreated();
+            // Look for any products.
+            if (context.Products.Any())
+            {
+                return;   // DB had already been seeded
+            }
+
+            var categories = new List<Category>()
             {
                 new Category()
                 {
@@ -228,14 +231,26 @@ namespace WebStore.Infrastructure.Services
                     ParentId = null
                 }
             };
-            _brands = new List<Brand>()
+            using (var trans = context.Database.BeginTransaction())
+            {
+                foreach (var section in categories)
+                {
+                    context.Categories.Add(section);
+                }
+
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Categories] ON");
+                context.SaveChanges();
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Categories] OFF");
+                trans.Commit();
+            }
+
+            var brands = new List<Brand>()
             {
                 new Brand()
                 {
                     Id = 1,
                     Name = "Acne",
                     Order = 0
-
                 },
                 new Brand()
                 {
@@ -274,7 +289,20 @@ namespace WebStore.Infrastructure.Services
                     Order = 6
                 },
             };
-            _products = new List<Product>()
+            using (var trans = context.Database.BeginTransaction())
+            {
+                foreach (var brand in brands)
+                {
+                    context.Brands.Add(brand);
+                }
+
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Brands] ON");
+                context.SaveChanges();
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Brands] OFF");
+                trans.Commit();
+            }
+
+            var products = new List<Product>()
             {
                 new Product()
                 {
@@ -284,8 +312,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product1.jpg",
                     Order = 0,
                     CategoryId = 2,
-                    BrandId = 1,
-                    AmountPiece = 10
+                    BrandId = 1
                 },
                 new Product()
                 {
@@ -295,8 +322,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product2.jpg",
                     Order = 1,
                     CategoryId = 2,
-                    BrandId = 2,
-                    AmountPiece = 7
+                    BrandId = 1
                 },
                 new Product()
                 {
@@ -306,8 +332,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product3.jpg",
                     Order = 2,
                     CategoryId = 2,
-                    BrandId = 3,
-                    AmountPiece = 12
+                    BrandId = 1
                 },
                 new Product()
                 {
@@ -317,8 +342,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product4.jpg",
                     Order = 3,
                     CategoryId = 2,
-                    BrandId = 4,
-                    AmountPiece = 4
+                    BrandId = 1
                 },
                 new Product()
                 {
@@ -328,8 +352,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product5.jpg",
                     Order = 4,
                     CategoryId = 2,
-                    BrandId = 5,
-                    AmountPiece = 31
+                    BrandId = 2
                 },
                 new Product()
                 {
@@ -339,8 +362,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product6.jpg",
                     Order = 5,
                     CategoryId = 2,
-                    BrandId = 6,
-                    AmountPiece = 22
+                    BrandId = 2
                 },
                 new Product()
                 {
@@ -350,8 +372,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product7.jpg",
                     Order = 6,
                     CategoryId = 2,
-                    BrandId = 7,
-                    AmountPiece = 16
+                    BrandId = 2
                 },
                 new Product()
                 {
@@ -361,8 +382,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product8.jpg",
                     Order = 7,
                     CategoryId = 25,
-                    BrandId = 1,
-                    AmountPiece = 11
+                    BrandId = 2
                 },
                 new Product()
                 {
@@ -372,8 +392,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product9.jpg",
                     Order = 8,
                     CategoryId = 25,
-                    BrandId = 2,
-                    AmountPiece = 10
+                    BrandId = 2
                 },
                 new Product()
                 {
@@ -383,8 +402,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product10.jpg",
                     Order = 9,
                     CategoryId = 25,
-                    BrandId = 3,
-                    AmountPiece = 2
+                    BrandId = 3
                 },
                 new Product()
                 {
@@ -394,8 +412,7 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product11.jpg",
                     Order = 10,
                     CategoryId = 25,
-                    BrandId = 4,
-                    AmountPiece = 3
+                    BrandId = 3
                 },
                 new Product()
                 {
@@ -405,37 +422,21 @@ namespace WebStore.Infrastructure.Services
                     ImageUrl = "product12.jpg",
                     Order = 11,
                     CategoryId = 25,
-                    BrandId = 5,
-                    AmountPiece = 1
+                    BrandId = 3
                 },
             };
-        }
-        public IEnumerable<Brand> GetBrands()
-        {
-            return _brands;
-        }
-
-        public IEnumerable<Category> GetCategories()
-        {
-            return _categories;
-        }
-
-        public IEnumerable<Product> GetProducts(ProductFilter filter)
-        {
-            var products = _products;
-            if (filter.CategoryId.HasValue)
+            using (var trans = context.Database.BeginTransaction())
             {
-                products = products.Where(c => c.CategoryId.Equals(filter.CategoryId)).ToList();
+                foreach (var product in products)
+                {
+                    context.Products.Add(product);
+                }
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Products] ON");
+                context.SaveChanges();
+                context.Database.ExecuteSqlCommand("SET IDENTITY_INSERT [dbo].[Products] OFF");
+                trans.Commit();
             }
-            if (filter.BrandId.HasValue)
-            {
-                products = products.Where(c => c.BrandId.Equals(filter.BrandId)).ToList();
-            }
-            return products;
-        }
-        public int GetCountProductsForBrand(int brandId)
-        {
-            return _products.Where(c => c.BrandId == brandId).Sum(c => c.AmountPiece);
+
         }
     }
 }

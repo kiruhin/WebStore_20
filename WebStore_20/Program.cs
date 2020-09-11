@@ -1,5 +1,11 @@
+using System;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using WebStore.Dal;
+
 
 namespace WebStore
 {
@@ -7,14 +13,27 @@ namespace WebStore
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
+            var host = BuildWebHost(args);
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+            using (var scope = host.Services.CreateScope()) // нужно для получения DbContext
+            {
+                var services = scope.ServiceProvider;
+                try
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    WebStoreContext context = services.GetRequiredService<WebStoreContext>();
+                    DbInitializer.Initialize(context);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "Oops. Something went wrong at DB initializing...");
+                }
+            }
+            host.Run();
+        }
+        private static IWebHost BuildWebHost(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>()
+                .Build();
     }
 }

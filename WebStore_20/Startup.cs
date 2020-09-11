@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebStore.Dal;
 using WebStore.Infrastructure;
 using WebStore.Infrastructure.Interfaces;
 using WebStore.Infrastructure.Services;
 using WebStore.Interfaces.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebStore
 {
@@ -31,10 +33,11 @@ namespace WebStore
                 // альтернативный вариант подключения
                 options.Filters.Add(new SimpleActionFilter()); // подключение по объекту
             });
-
+            services.AddDbContext<WebStoreContext>(options => options.
+            UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
             // Добавляем разрешение зависимости
             services.AddSingleton<IEmployeesService, InMemoryEmployeesService>();
-            services.AddSingleton<IProductService, InMemoryProductService>();
+            services.AddScoped<IProductService, SqlProductService>();
             // services.AddScoped<IEmployeesService, InMemoryEmployeesService>();
             //services.AddTransient<IEmployeesService, InMemoryEmployeesService>();
         }
@@ -67,7 +70,7 @@ namespace WebStore
                 // endpoints.MapDefaultControllerRoute(); // краткий аналог
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Catalog}/{action=Shop}/{id?}");
+                    pattern: "{controller=Home}/{action=index}/{id?}");
 // https://localhost:44317/    home            /index
 // https://localhost:44317/
                 // Маршрут по умолчанию состоит из трёх частей разделённых “/”

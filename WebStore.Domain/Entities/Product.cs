@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using WebStore.Domain.Entities.Base;
 using WebStore.Domain.Entities.Base.Interfaces;
@@ -16,5 +17,10 @@ namespace WebStore.Domain.Entities
         public override string Name { get; set; }
         public override int Id { get; set; }
         public int AmountPiece { get; set; }
+        public string Manufacturer { get; set; }
+        [ForeignKey("CategoryId")] 
+        public virtual Category Category { get; set; }
+        [ForeignKey("BrandId")]
+        public virtual Brand Brand { get; set; }
     }
 }

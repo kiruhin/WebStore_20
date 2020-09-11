@@ -18,20 +18,17 @@ namespace WebStore.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var Brands = _productService.GetBrands();
-            List<BrandViewModel> brandsVM = new List<BrandViewModel>();
-            foreach (var brand in Brands)
+            return View(_productService.GetBrands().Select(c =>
             {
-                int amountPiece = _productService.GetCountProductsForBrand(brand.Id);
-                brandsVM.Add(new BrandViewModel
+                int amountPiece = _productService.GetCountProductsForBrand(c.Id);
+                return new BrandViewModel
                 {
-                    Id = brand.Id,
-                    Name = brand.Name,
-                    Order = brand.Order,
+                    Id = c.Id,
+                    Name = c.Name,
+                    Order = c.Order,
                     AmountPiece = amountPiece
-                });
-            }
-            return View(brandsVM);
+                };
+            }).OrderBy(c => c.Order).ToList());           
         }
     }
 }
