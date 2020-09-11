@@ -16,6 +16,9 @@ namespace WebStore.Domain.Entities
         /// Id-Brand for Products
         /// </summary>
         public int? BrandId { get; set; }
+        /// <summary>
+        /// URL for Image
+        /// </summary>
         public string ImageUrl { get; set; }
         public decimal Price { get; set; }
         /// <summary>
