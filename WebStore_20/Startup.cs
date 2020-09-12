@@ -103,6 +103,9 @@ namespace WebStore
 
             app.UseStaticFiles();
 
+            //Подключение сервиса аутентификации
+            app.UseAuthentication();
+
             var helloString = _configuration["CustomHelloWorld"];
             //var helloString = _configuration["Logging:LogLevel:Default"];
 
