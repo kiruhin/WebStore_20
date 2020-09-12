@@ -69,6 +69,10 @@ namespace WebStore.Controllers
             return Json(employee);
         }
 
+        /// <summary>
+        /// Return to Google
+        /// </summary>
+        /// <returns></returns>
         public IActionResult GoGoogle()
         {
             return Redirect("https://google.com");
