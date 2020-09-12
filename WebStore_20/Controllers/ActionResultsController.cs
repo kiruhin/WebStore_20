@@ -8,6 +8,9 @@ using WebStore.ViewModels;
 
 namespace WebStore.Controllers
 {
+    /// <summary>
+    /// Examples of types returned
+    /// </summary>
     public class ActionResultsController : Controller
     {
         public IActionResult Index()
