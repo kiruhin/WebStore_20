@@ -22,6 +22,11 @@ namespace WebStore.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Example return any string
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public IActionResult MereContentString(string name)
         {
             return Content($"Hi, {name}. I'm mere string content result");
