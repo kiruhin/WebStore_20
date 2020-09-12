@@ -50,6 +50,10 @@ namespace WebStore.Controllers
             return new NoContentResult();
         }
 
+        /// <summary>
+        /// Return json-object
+        /// </summary>
+        /// <returns></returns>
         public JsonResult JsonObjectSerialized()
         {
             var employee = new EmployeeViewModel
