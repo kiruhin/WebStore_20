@@ -96,6 +96,10 @@ namespace WebStore.Controllers
             return RedirectToAction("MereContentString", "ActionResults", new { name = "Dear user" });
         }
 
+        /// <summary>
+        /// Return forbidden resourse
+        /// </summary>
+        /// <returns></returns>
         public IActionResult ForbiddenResource()
         {
             //return Forbid(); // the same
