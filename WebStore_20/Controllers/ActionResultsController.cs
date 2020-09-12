@@ -78,6 +78,10 @@ namespace WebStore.Controllers
             return Redirect("https://google.com");
         }
 
+        /// <summary>
+        /// Return Home-page
+        /// </summary>
+        /// <returns></returns>
         public IActionResult GoToHomePage()
         {
             return LocalRedirect("~/Home/Index");
