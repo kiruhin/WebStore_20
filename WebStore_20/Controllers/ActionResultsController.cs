@@ -13,6 +13,10 @@ namespace WebStore.Controllers
     /// </summary>
     public class ActionResultsController : Controller
     {
+        /// <summary>
+        /// Example return View
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Index()
         {
             return View();
