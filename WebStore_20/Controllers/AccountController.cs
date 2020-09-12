@@ -42,7 +42,7 @@ namespace WebStore.Controllers
 
             if (!loginResult.Succeeded)
             {
-                ModelState.AddModelError("", "Вход невозможен"); //говорим пользователю что вход невозможен
+                ModelState.AddModelError("", "Login not possible"); //говорим пользователю что вход невозможен
                 return View(model);
             }
 
