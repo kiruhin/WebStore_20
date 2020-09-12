@@ -87,6 +87,10 @@ namespace WebStore.Controllers
             return LocalRedirect("~/Home/Index");
         }
 
+        /// <summary>
+        /// Redirection with parameters
+        /// </summary>
+        /// <returns></returns>
         public IActionResult RedirectWithParameters()
         {
             return RedirectToAction("MereContentString", "ActionResults", new { name = "Dear user" });
