@@ -91,7 +91,10 @@ namespace WebStore
 
             app.UseStaticFiles();
 
+            app.UseRouting();
+    
             app.UseAuthentication();
+            app.UseAuthorization();
 
             var helloString = _configuration["CustomHelloWorld"];
             //var helloString = _configuration["Logging:LogLevel:Default"];
@@ -103,8 +106,6 @@ namespace WebStore
             UseMiddlewareSample(app);
 
             app.Map("/index", CustomIndexHandler);
-
-            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
