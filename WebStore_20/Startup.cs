@@ -59,7 +59,7 @@ namespace WebStore
                 options.Password.RequireUppercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = false;
-                
+
                 // Lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
                 options.Lockout.MaxFailedAccessAttempts = 10;
@@ -79,6 +79,11 @@ namespace WebStore
                 options.AccessDeniedPath = "/Account/AccessDenied"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
                 options.SlidingExpiration = true;
             });
+
+            //Настройки для корзины
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ICartService, CookieCartService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -92,7 +97,7 @@ namespace WebStore
             app.UseStaticFiles();
 
             app.UseRouting();
-    
+
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -113,8 +118,8 @@ namespace WebStore
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-// https://localhost:44317/    home            /index
-// https://localhost:44317/
+                // https://localhost:44317/    home            /index
+                // https://localhost:44317/
                 // Маршрут по умолчанию состоит из трёх частей разделённых “/”
                 // Первой частью указывается имя контроллера,
                 // второй - имя действия (метода) в контроллере,
