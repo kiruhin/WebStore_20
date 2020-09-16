@@ -4,6 +4,9 @@ using WebStore.Domain.Entities;
 
 namespace WebStore.Infrastructure.Interfaces
 {
+    /// <summary>
+    /// Interface for create service products
+    /// </summary>
     public interface IProductService
     {
         IEnumerable<Category> GetCategories();
