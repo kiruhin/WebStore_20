@@ -61,6 +61,10 @@ namespace WebStore.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        /// <summary>
+        /// Action-method for registration new users
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Register()
         {
