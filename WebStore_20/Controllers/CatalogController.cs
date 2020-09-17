@@ -57,8 +57,9 @@ namespace WebStore.Controllers
                 Price = product.Price,
                 Brand = product.Brand!=null?product.Brand.Name:string.Empty,
             };
-            
+
             return View(_model);
+            //return View();
         }
     }
 
