@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebStore.DAL;
 using WebStore.Domain;
 using WebStore.Domain.Entities;
@@ -53,6 +54,26 @@ namespace WebStore.Infrastructure.Services
                 query = query.Where(c => c.CategoryId.Equals(filter.CategoryId.Value));
 
             return query.ToList();
+        }
+
+        
+        /// <summary>
+        /// Get Product By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Product</returns>
+        public Product GetProductById(int id)
+        {
+            var query = _context.Products.AsQueryable();
+            
+            Product first = null;
+            foreach (var p in query)
+                if (p.Id.Equals(id))
+                {
+                    first = p;
+                    break;
+                }
+            return first;
         }
     }
 }
