@@ -14,5 +14,13 @@ namespace WebStore.Infrastructure.Interfaces
         int GetRatingBrand(int idBrand);
 
         IEnumerable<Product> GetProducts(ProductFilter filter);
+
+        /// <summary>
+        /// Get product by Id
+        /// </summary>
+        /// <param name="id">Id product</param>
+        /// <returns>If found return Entity Product,  else return null</returns>
+        Product GetProductById(int id);
+
     }
 }

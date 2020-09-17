@@ -450,5 +450,26 @@ namespace WebStore.Infrastructure.Services
 
             return products;
         }
+
+        /// <summary>
+        /// Get Product By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Product</returns>
+        public Product GetProductById(int id)
+        {
+            var products = _products;
+            Product first = null;
+            foreach (var p in products)
+                if (p.Id.Equals(id))
+                {
+                    first = p;
+                    break;
+                }
+
+            //var _product = products.FirstOrDefault(p => p.Id.Equals(id));
+            return first;
+        }
+ 
     }
 }

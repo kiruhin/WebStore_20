@@ -50,7 +50,7 @@ namespace WebStore.Controllers
 
         public IActionResult Cart()
         {
-            return View();
+            return View("Details");
         }
 
         public IActionResult BlogSingle()
