@@ -39,7 +39,11 @@ namespace WebStore.Controllers
 
             return View(model);
         }
-
+        /// <summary>
+        /// Get details
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IActionResult ProductDetails(int id)
         {
             var product = _productService.GetProductById(id);
